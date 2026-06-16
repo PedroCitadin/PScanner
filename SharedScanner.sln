@@ -1,0 +1,33 @@
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556F}") = "ScannerShared", "ScannerShared\ScannerShared.csproj", "{B1DBE7DA-7300-43CE-A35C-1582243811A8}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556F}") = "ScannerServerTray", "ScannerServerTray\ScannerServerTray.csproj", "{3DD773AC-EC04-4D4E-836C-58B9257AE629}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556F}") = "ScannerClientWpf", "ScannerClientWpf\ScannerClientWpf.csproj", "{A2BA10E2-2916-4A6D-8CE5-D65FC44C3C60}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B1DBE7DA-7300-43CE-A35C-1582243811A8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B1DBE7DA-7300-43CE-A35C-1582243811A8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B1DBE7DA-7300-43CE-A35C-1582243811A8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B1DBE7DA-7300-43CE-A35C-1582243811A8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3DD773AC-EC04-4D4E-836C-58B9257AE629}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3DD773AC-EC04-4D4E-836C-58B9257AE629}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3DD773AC-EC04-4D4E-836C-58B9257AE629}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3DD773AC-EC04-4D4E-836C-58B9257AE629}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A2BA10E2-2916-4A6D-8CE5-D65FC44C3C60}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A2BA10E2-2916-4A6D-8CE5-D65FC44C3C60}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A2BA10E2-2916-4A6D-8CE5-D65FC44C3C60}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A2BA10E2-2916-4A6D-8CE5-D65FC44C3C60}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

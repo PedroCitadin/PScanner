@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "JNiklm2ZZppzArlti4WzqGd3u9+hNln+RM35BarpLqs=",
+  "Source": "ScannerServerTray",
+  "BasePath": "_content/ScannerServerTray",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}

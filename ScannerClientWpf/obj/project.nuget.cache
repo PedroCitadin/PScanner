@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "Ch7aP/X6ksLHCMXFh/W6fOSYGs9WxyR+Cr3xMvR4pB2+wUMFJ8FjPeZ2SjOUQ9p80MpN0HRWTL5FyPKMujVP/Q==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\pedro\\Desktop\\PScanner\\ScannerClientWpf\\ScannerClientWpf.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\pedro\\.nuget\\packages\\microsoft.windows.sdk.net.ref\\10.0.17763.52\\microsoft.windows.sdk.net.ref.10.0.17763.52.nupkg.sha512"
+  ],
+  "logs": []
+}
