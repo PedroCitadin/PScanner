@@ -1,10 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "9CWSMaMHd1AXJz1lJ7V0An0SB4i6x+wvuABHoo6TCHPzo4+3PQfY1wsPbbqrSpuDfyynhP/JIoX+Rs89cuP8PA==",
+  "dgSpecHash": "F2vbNos+lJo=",
   "success": true,
-  "projectFilePath": "C:\\Users\\pedro\\Desktop\\PScanner\\ScannerServerTray\\ScannerServerTray.csproj",
+  "projectFilePath": "C:\\Users\\Gestor\\Desktop\\PScanner\\ScannerServerTray\\ScannerServerTray.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\pedro\\.nuget\\packages\\microsoft.windows.sdk.net.ref\\10.0.17763.52\\microsoft.windows.sdk.net.ref.10.0.17763.52.nupkg.sha512"
+    "C:\\Users\\Gestor\\.nuget\\packages\\microsoft.windows.sdk.net.ref\\10.0.17763.57\\microsoft.windows.sdk.net.ref.10.0.17763.57.nupkg.sha512"
   ],
   "logs": []
 }

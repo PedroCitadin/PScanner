@@ -35,7 +35,7 @@ Serviços:
 Não há banco de dados no MVP.
 
 - Servidor: `config.json` ao lado do executável e arquivos temporários na pasta configurada.
-- Cliente: `%LOCALAPPDATA%\SharedScannerClient\config.json`.
+- Cliente: `%LOCALAPPDATA%\PScannerClient\config.json`.
 
 ## Segurança
 

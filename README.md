@@ -1,6 +1,6 @@
-# SharedScanner MVP
+# PScanner MVP
 
-MVP de compartilhamento de scanner em rede local para Windows, inspirado no fluxo do BlindScanner. Um computador servidor com scanner USB executa um aplicativo de bandeja que hospeda uma API HTTP. Um computador cliente executa um app WPF, chama a API, baixa as imagens e salva o resultado final como PDF, PNG ou JPG.
+MVP de compartilhamento de scanner em rede local para Windows. Um computador servidor com scanner USB executa o PScanner Server na bandeja e hospeda uma API HTTP. Um computador cliente executa o PScanner Client, chama a API, baixa as imagens e salva o resultado final como PDF, PNG ou JPG.
 
 ## Projetos
 
@@ -25,7 +25,7 @@ dotnet build .\SharedScanner.sln -c Release
 ## Como rodar o servidor
 
 1. Conecte o scanner USB no PC servidor.
-2. Execute `ScannerServerTray`.
+2. Execute `PScanner.Server`.
 3. Na primeira execução, o arquivo `config.json` é criado ao lado do executável.
 4. O ícone aparecerá na bandeja do Windows com as opções:
    - Abrir status
@@ -37,7 +37,7 @@ Configuração padrão:
 ```json
 {
   "Port": 5155,
-  "TempFolder": "%LOCALAPPDATA%\\SharedScanner\\Temp",
+  "TempFolder": "%LOCALAPPDATA%\\PScanner\\Temp",
   "ServerName": "NOME-DO-PC"
 }
 ```
@@ -63,12 +63,12 @@ http://192.168.0.25:5155
 Execute o PowerShell como administrador:
 
 ```powershell
-New-NetFirewallRule -DisplayName "SharedScanner 5155" -Direction Inbound -Protocol TCP -LocalPort 5155 -Action Allow
+New-NetFirewallRule -DisplayName "PScanner 5155" -Direction Inbound -Protocol TCP -LocalPort 5155 -Action Allow
 ```
 
 ## Como rodar o cliente
 
-1. Execute `ScannerClientWpf`.
+1. Execute `PScanner.Client`.
 2. Informe a URL do servidor, por exemplo `http://192.168.0.25:5155`.
 3. Clique em "Testar conexão".
 4. Clique em "Atualizar scanners".
@@ -80,7 +80,7 @@ New-NetFirewallRule -DisplayName "SharedScanner 5155" -Direction Inbound -Protoc
 Preferências do cliente são salvas em:
 
 ```text
-%LOCALAPPDATA%\SharedScannerClient\config.json
+%LOCALAPPDATA%\PScannerClient\config.json
 ```
 
 ## Testar API pelo navegador/Postman
@@ -123,6 +123,16 @@ Excluir temporário:
 DELETE http://SERVIDOR:5155/api/scans/{scanId}
 ```
 
+## Gerar instalador
+
+Use:
+
+```powershell
+.\Installer\Build-InstallerPackage.ps1 -NoRestore
+```
+
+O pacote fica em `Installer\Package` e o ZIP em `Installer\PScannerInstaller.zip`. Execute `Install-PScanner.bat` e escolha Client, Server ou ambos. O Client cria atalho na area de trabalho; o Server cria atalho no menu Iniciar e inicia com o Windows.
+
 ## Publicar executáveis Windows
 
 Servidor:
@@ -137,7 +147,7 @@ Cliente:
 dotnet publish .\ScannerClientWpf\ScannerClientWpf.csproj -c Release -r win-x64 --self-contained true
 ```
 
-Os executáveis ficam em `bin\Release\net8.0-windows\win-x64\publish`.
+Os executáveis ficam em `bin\Release\net8.0-windows10.0.17763.0\win-x64\publish` quando publicado com runtime `win-x64`, ou em `bin\Release\net8.0-windows10.0.17763.0\publish` na publicação dependente do .NET instalado.
 
 ## Limitações do MVP
 

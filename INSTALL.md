@@ -1,4 +1,4 @@
-# Instalação manual
+# Instalacao manual do PScanner
 
 ## Requisitos
 
@@ -12,21 +12,21 @@
 
 1. Publique o projeto `ScannerServerTray`.
 2. Copie a pasta `publish` para o PC com scanner USB.
-3. Execute `ScannerServerTray.exe`.
+3. Execute `PScanner.Server.exe`.
 4. Edite `config.json` se quiser trocar porta, pasta temporária ou nome amigável.
 5. Libere a porta no Firewall do Windows.
 
 Exemplo de firewall:
 
 ```powershell
-New-NetFirewallRule -DisplayName "SharedScanner 5155" -Direction Inbound -Protocol TCP -LocalPort 5155 -Action Allow
+New-NetFirewallRule -DisplayName "PScanner 5155" -Direction Inbound -Protocol TCP -LocalPort 5155 -Action Allow
 ```
 
 ## Cliente
 
 1. Publique o projeto `ScannerClientWpf`.
 2. Copie a pasta `publish` para o PC cliente.
-3. Execute `ScannerClientWpf.exe`.
+3. Execute `PScanner.Client.exe`.
 4. Informe a URL do servidor.
 5. Teste conexão, atualize scanners e digitalize.
 
@@ -43,6 +43,6 @@ New-NetFirewallRule -DisplayName "SharedScanner 5155" -Direction Inbound -Protoc
 3. Opcionalmente remova:
 
 ```text
-%LOCALAPPDATA%\SharedScanner
-%LOCALAPPDATA%\SharedScannerClient
+%LOCALAPPDATA%\PScanner
+%LOCALAPPDATA%\PScannerClient
 ```

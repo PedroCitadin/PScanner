@@ -1,0 +1,9 @@
+C:\Users\Gestor\Desktop\PScanner\ScannerServerTray\bin\Release\net8.0-windows10.0.17763.0\publish\PScanner.Server.exe
+C:\Users\Gestor\Desktop\PScanner\ScannerServerTray\bin\Release\net8.0-windows10.0.17763.0\publish\PScanner.Server.dll
+C:\Users\Gestor\Desktop\PScanner\ScannerServerTray\bin\Release\net8.0-windows10.0.17763.0\publish\PScanner.Server.deps.json
+C:\Users\Gestor\Desktop\PScanner\ScannerServerTray\bin\Release\net8.0-windows10.0.17763.0\publish\PScanner.Server.runtimeconfig.json
+C:\Users\Gestor\Desktop\PScanner\ScannerServerTray\bin\Release\net8.0-windows10.0.17763.0\publish\PScanner.Server.pdb
+C:\Users\Gestor\Desktop\PScanner\ScannerServerTray\bin\Release\net8.0-windows10.0.17763.0\publish\Microsoft.Windows.SDK.NET.dll
+C:\Users\Gestor\Desktop\PScanner\ScannerServerTray\bin\Release\net8.0-windows10.0.17763.0\publish\WinRT.Runtime.dll
+C:\Users\Gestor\Desktop\PScanner\ScannerServerTray\bin\Release\net8.0-windows10.0.17763.0\publish\ScannerShared.dll
+C:\Users\Gestor\Desktop\PScanner\ScannerServerTray\bin\Release\net8.0-windows10.0.17763.0\publish\ScannerShared.pdb

@@ -8,7 +8,7 @@ public sealed class ClientConfigService
     private static readonly JsonSerializerOptions Options = new() { WriteIndented = true };
     private readonly string _folder = Path.Combine(
         Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData),
-        "SharedScannerClient");
+        "PScannerClient");
     private string PathName => Path.Combine(_folder, "config.json");
 
     public ClientConfig Load()

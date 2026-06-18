@@ -66,13 +66,13 @@ app.UseExceptionHandler(errorApp =>
 
 var serverTask = app.RunAsync(cts.Token);
 
-tray.Icon = SystemIcons.Application;
-tray.Text = $"Shared Scanner - {config.ServerName}";
+tray.Icon = Icon.ExtractAssociatedIcon(Application.ExecutablePath) ?? SystemIcons.Application;
+tray.Text = $"PScanner Server - {config.ServerName}";
 tray.Visible = true;
 tray.ContextMenuStrip = BuildMenu(config, log, cts, tray);
-tray.ShowBalloonTip(3000, "Shared Scanner", $"Servidor ativo em {GetServerAddress(config.Port)}", ToolTipIcon.Info);
+tray.ShowBalloonTip(3000, "PScanner Server", $"Servidor ativo em {GetServerAddress(config.Port)}", ToolTipIcon.Info);
 
-log.Info($"Servidor iniciado em http://0.0.0.0:{config.Port}");
+log.Info($"PScanner Server iniciado em http://0.0.0.0:{config.Port}");
 Application.Run();
 
 cts.Cancel();
@@ -97,7 +97,7 @@ static ContextMenuStrip BuildMenu(AppConfig config, LogService log, Cancellation
     menu.Items.Add("Copiar endereco do servidor", null, (_, _) =>
     {
         Clipboard.SetText(GetServerAddress(config.Port));
-        tray.ShowBalloonTip(1500, "Shared Scanner", "Endereco copiado.", ToolTipIcon.Info);
+        tray.ShowBalloonTip(1500, "PScanner Server", "Endereco copiado.", ToolTipIcon.Info);
     });
     menu.Items.Add(new ToolStripSeparator());
     menu.Items.Add("Sair", null, (_, _) =>

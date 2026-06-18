@@ -73,7 +73,7 @@ public partial class MainWindow : Window
     {
         if (ScannerCombo.SelectedItem is not ScannerInfoDto scanner)
         {
-            MessageBox.Show("Selecione um scanner.", "Shared Scanner", MessageBoxButton.OK, MessageBoxImage.Information);
+            MessageBox.Show("Selecione um scanner.", "PScanner", MessageBoxButton.OK, MessageBoxImage.Information);
             return;
         }
 
@@ -128,7 +128,7 @@ public partial class MainWindow : Window
     {
         if (Pages.Count == 0)
         {
-            MessageBox.Show("Digitalize pelo menos uma pagina antes de salvar.", "Shared Scanner", MessageBoxButton.OK, MessageBoxImage.Information);
+            MessageBox.Show("Digitalize pelo menos uma pagina antes de salvar.", "PScanner", MessageBoxButton.OK, MessageBoxImage.Information);
             return;
         }
 
@@ -214,7 +214,7 @@ public partial class MainWindow : Window
         catch (Exception ex)
         {
             StatusText.Text = "Falha na operacao.";
-            MessageBox.Show(ex.Message, "Shared Scanner", MessageBoxButton.OK, MessageBoxImage.Error);
+            MessageBox.Show(ex.Message, "PScanner", MessageBoxButton.OK, MessageBoxImage.Error);
         }
         finally
         {

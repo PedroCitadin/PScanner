@@ -1,0 +1,12 @@
+C:\Users\Gestor\Desktop\PScanner\ScannerShared\obj\Release\net8.0\ScannerShared.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Gestor\Desktop\PScanner\ScannerShared\obj\Release\net8.0\ScannerShared.AssemblyInfoInputs.cache
+C:\Users\Gestor\Desktop\PScanner\ScannerShared\obj\Release\net8.0\ScannerShared.AssemblyInfo.cs
+C:\Users\Gestor\Desktop\PScanner\ScannerShared\obj\Release\net8.0\ScannerShared.csproj.CoreCompileInputs.cache
+C:\Users\Gestor\Desktop\PScanner\ScannerShared\obj\Release\net8.0\ScannerShared.sourcelink.json
+C:\Users\Gestor\Desktop\PScanner\ScannerShared\obj\Release\net8.0\ScannerShared.dll
+C:\Users\Gestor\Desktop\PScanner\ScannerShared\obj\Release\net8.0\refint\ScannerShared.dll
+C:\Users\Gestor\Desktop\PScanner\ScannerShared\obj\Release\net8.0\ScannerShared.pdb
+C:\Users\Gestor\Desktop\PScanner\ScannerShared\bin\Release\net8.0\ScannerShared.deps.json
+C:\Users\Gestor\Desktop\PScanner\ScannerShared\bin\Release\net8.0\ScannerShared.dll
+C:\Users\Gestor\Desktop\PScanner\ScannerShared\bin\Release\net8.0\ScannerShared.pdb
+C:\Users\Gestor\Desktop\PScanner\ScannerShared\obj\Release\net8.0\ref\ScannerShared.dll
