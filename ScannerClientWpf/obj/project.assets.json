@@ -12,6 +12,18 @@
           "bin/placeholder/ScannerShared.dll": {}
         }
       }
+    },
+    "net8.0-windows10.0.17763/win-x64": {
+      "ScannerShared/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v8.0",
+        "compile": {
+          "bin/placeholder/ScannerShared.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/ScannerShared.dll": {}
+        }
+      }
     }
   },
   "libraries": {
@@ -33,7 +45,7 @@
     "version": "1.0.0",
     "restore": {
       "projectUniqueName": "C:\\Users\\Gestor\\Desktop\\PScanner\\ScannerClientWpf\\ScannerClientWpf.csproj",
-      "projectName": "ScannerClientWpf",
+      "projectName": "PScanner.Client",
       "projectPath": "C:\\Users\\Gestor\\Desktop\\PScanner\\ScannerClientWpf\\ScannerClientWpf.csproj",
       "packagesPath": "C:\\Users\\Gestor\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\Gestor\\Desktop\\PScanner\\ScannerClientWpf\\obj\\",
@@ -87,8 +99,20 @@
         "warn": true,
         "downloadDependencies": [
           {
+            "name": "Microsoft.AspNetCore.App.Runtime.win-x64",
+            "version": "[8.0.25, 8.0.25]"
+          },
+          {
+            "name": "Microsoft.NETCore.App.Runtime.win-x64",
+            "version": "[8.0.25, 8.0.25]"
+          },
+          {
             "name": "Microsoft.Windows.SDK.NET.Ref",
             "version": "[10.0.17763.57, 10.0.17763.57]"
+          },
+          {
+            "name": "Microsoft.WindowsDesktop.App.Runtime.win-x64",
+            "version": "[8.0.25, 8.0.25]"
           }
         ],
         "frameworkReferences": {
@@ -103,6 +127,11 @@
           }
         },
         "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.200/PortableRuntimeIdentifierGraph.json"
+      }
+    },
+    "runtimes": {
+      "win-x64": {
+        "#import": []
       }
     }
   }

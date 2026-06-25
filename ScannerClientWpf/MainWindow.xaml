@@ -29,26 +29,46 @@
 
         <Border Background="White" BorderBrush="#D9DEE7" BorderThickness="1" CornerRadius="6" Padding="12">
             <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
                 </Grid.ColumnDefinitions>
                 <TextBlock Text="Servidor" VerticalAlignment="Center" FontWeight="SemiBold" Margin="0,0,8,0"/>
                 <TextBox x:Name="ServerUrlBox" Grid.Column="1" Height="32" VerticalContentAlignment="Center"/>
-                <Button x:Name="TestButton" Grid.Column="2" Width="140" Height="32" Margin="8,0,0,0" Click="TestButton_Click">
+                <TextBlock Grid.Column="2" Text="Porta" VerticalAlignment="Center" FontWeight="SemiBold" Margin="8,0,8,0"/>
+                <TextBox x:Name="DiscoveryPortBox" Grid.Column="3" Width="64" Height="32" VerticalContentAlignment="Center"/>
+                <Button x:Name="DiscoverButton" Grid.Column="4" Width="130" Height="32" Margin="8,0,0,0" Click="DiscoverButton_Click">
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                        <TextBlock Style="{StaticResource ButtonIcon}" Text="&#xE774;"/>
+                        <TextBlock Text="Buscar rede"/>
+                    </StackPanel>
+                </Button>
+                <Button x:Name="TestButton" Grid.Column="5" Width="140" Height="32" Margin="8,0,0,0" Click="TestButton_Click">
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                         <TextBlock Style="{StaticResource ButtonIcon}" Text="&#xE721;"/>
                         <TextBlock Text="Testar conexao"/>
                     </StackPanel>
                 </Button>
-                <Button x:Name="RefreshButton" Grid.Column="3" Width="165" Height="32" Margin="8,0,0,0" Click="RefreshButton_Click">
+                <Button x:Name="RefreshButton" Grid.Column="6" Width="165" Height="32" Margin="8,0,0,0" Click="RefreshButton_Click">
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                         <TextBlock Style="{StaticResource ButtonIcon}" Text="&#xE72C;"/>
                         <TextBlock Text="Atualizar scanners"/>
                     </StackPanel>
                 </Button>
+                <TextBlock Grid.Row="1" Text="Encontrados" VerticalAlignment="Center" FontWeight="SemiBold" Margin="0,8,8,0"
+                           Visibility="{Binding ElementName=DiscoveredServersCombo, Path=Visibility}"/>
+                <ComboBox x:Name="DiscoveredServersCombo" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="6" Height="32" Margin="0,8,0,0"
+                          DisplayMemberPath="DisplayName" SelectionChanged="DiscoveredServersCombo_SelectionChanged"
+                          Visibility="Collapsed"/>
             </Grid>
         </Border>
 
@@ -61,7 +81,7 @@
                     <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition Width="Auto"/>
                 </Grid.ColumnDefinitions>
-                <ComboBox x:Name="ScannerCombo" DisplayMemberPath="Name" Height="32"/>
+                <ComboBox x:Name="ScannerCombo" DisplayMemberPath="Name" Height="32" SelectionChanged="ScannerCombo_SelectionChanged"/>
                 <ComboBox x:Name="DpiCombo" Grid.Column="1" Width="90" Height="32" Margin="8,0,0,0"/>
                 <ComboBox x:Name="ColorModeCombo" Grid.Column="2" Width="150" Height="32" Margin="8,0,0,0"/>
                 <ComboBox x:Name="FormatCombo" Grid.Column="3" Width="90" Height="32" Margin="8,0,0,0"/>

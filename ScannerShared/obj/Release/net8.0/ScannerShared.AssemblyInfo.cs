@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("ScannerShared")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Release")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+5d3090955499db7421250bb25cf9180f9f62bd73")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+fda006c2b08be46d26f22dadbdf2f31da2cb6f54")]
 [assembly: System.Reflection.AssemblyProductAttribute("ScannerShared")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ScannerShared")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

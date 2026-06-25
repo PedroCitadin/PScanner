@@ -12,9 +12,11 @@ public partial class MainWindow : Window
 {
     private readonly ClientConfigService _configService = new();
     private readonly ApiClientService _api = new();
+    private readonly NetworkScannerDiscoveryService _discovery = new();
     private readonly ImageEditService _imageEdit = new();
     private readonly PdfExportService _pdfExport = new();
     private readonly ClientConfig _config;
+    private bool _updatingDiscoveredServers;
 
     public ObservableCollection<ScannedPage> Pages { get; } = new();
 
@@ -25,6 +27,7 @@ public partial class MainWindow : Window
 
         _config = _configService.Load();
         ServerUrlBox.Text = _config.LastServerUrl;
+        DiscoveryPortBox.Text = _config.LastDiscoveryPort.ToString();
         DpiCombo.ItemsSource = new[] { 150, 200, 300 };
         DpiCombo.SelectedItem = _config.LastDpi;
         ColorModeCombo.ItemsSource = new[]
@@ -38,6 +41,13 @@ public partial class MainWindow : Window
         FormatCombo.ItemsSource = new[] { "PDF", "PNG", "JPG" };
         FormatCombo.SelectedItem = _config.LastOutputFormat;
         UpdatePreview();
+        Loaded += MainWindow_Loaded;
+    }
+
+    private async void MainWindow_Loaded(object sender, RoutedEventArgs e)
+    {
+        Loaded -= MainWindow_Loaded;
+        await RefreshScannersAsync(showErrors: false);
     }
 
     private async void TestButton_Click(object sender, RoutedEventArgs e)
@@ -51,22 +61,79 @@ public partial class MainWindow : Window
         });
     }
 
+    private async void DiscoverButton_Click(object sender, RoutedEventArgs e)
+    {
+        if (!int.TryParse(DiscoveryPortBox.Text, out var port) || port is < 1 or > 65535)
+        {
+            MessageBox.Show("Informe uma porta valida entre 1 e 65535.", "PScanner", MessageBoxButton.OK, MessageBoxImage.Information);
+            return;
+        }
+
+        await RunUiAsync("Buscando servidores na rede...", async token =>
+        {
+            _config.LastDiscoveryPort = port;
+            var servers = await _discovery.DiscoverAsync(port, token);
+            if (servers.Count == 0)
+            {
+                StatusText.Text = $"Nenhum servidor PScanner encontrado na porta {port}.";
+                SavePreferences();
+                return;
+            }
+
+            var selected = servers[0];
+            _updatingDiscoveredServers = true;
+            DiscoveredServersCombo.ItemsSource = servers;
+            DiscoveredServersCombo.Visibility = Visibility.Visible;
+            DiscoveredServersCombo.SelectedItem = selected;
+            _updatingDiscoveredServers = false;
+            ServerUrlBox.Text = selected.Url;
+            StatusText.Text = servers.Count == 1
+                ? $"Servidor encontrado: {selected.IpAddress}."
+                : $"Servidores encontrados: {string.Join(", ", servers.Select(x => x.IpAddress))}. Usando {selected.IpAddress}.";
+            SavePreferences();
+            await LoadScannersAsync(token);
+        });
+    }
+
+    private async void DiscoveredServersCombo_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
+    {
+        if (_updatingDiscoveredServers)
+            return;
+
+        if (DiscoveredServersCombo.SelectedItem is not DiscoveredScannerServer server)
+            return;
+
+        ServerUrlBox.Text = server.Url;
+        SavePreferences();
+        await RefreshScannersAsync(showErrors: false);
+    }
+
     private async void RefreshButton_Click(object sender, RoutedEventArgs e)
     {
         await RefreshScannersAsync();
     }
 
-    private async Task RefreshScannersAsync()
+    private async Task RefreshScannersAsync(bool showErrors = true)
     {
         await RunUiAsync("Buscando scanners...", async token =>
         {
             _api.ServerUrl = ServerUrlBox.Text;
-            var scanners = await _api.GetScannersAsync(token);
-            ScannerCombo.ItemsSource = scanners;
-            ScannerCombo.SelectedIndex = scanners.Count > 0 ? 0 : -1;
-            StatusText.Text = scanners.Count == 0 ? "Nenhum scanner encontrado no servidor." : $"{scanners.Count} scanner(s) encontrado(s).";
+            await LoadScannersAsync(token);
             SavePreferences();
-        });
+        }, showErrors);
+    }
+
+    private async Task LoadScannersAsync(CancellationToken token)
+    {
+        _api.ServerUrl = ServerUrlBox.Text;
+        var scanners = await _api.GetScannersAsync(token);
+        ScannerCombo.ItemsSource = scanners;
+
+        var selectedIndex = !string.IsNullOrWhiteSpace(_config.LastScannerId)
+            ? scanners.ToList().FindIndex(x => x.Id == _config.LastScannerId)
+            : -1;
+        ScannerCombo.SelectedIndex = selectedIndex >= 0 ? selectedIndex : scanners.Count > 0 ? 0 : -1;
+        StatusText.Text = scanners.Count == 0 ? "Nenhum scanner encontrado no servidor." : $"{scanners.Count} scanner(s) encontrado(s).";
     }
 
     private async void ScanButton_Click(object sender, RoutedEventArgs e)
@@ -89,6 +156,15 @@ public partial class MainWindow : Window
             StatusText.Text = $"Digitalizacao recebida: {result.FileName}";
             SavePreferences();
         });
+    }
+
+    private void ScannerCombo_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
+    {
+        if (ScannerCombo.SelectedItem is ScannerInfoDto scanner)
+        {
+            _config.LastScannerId = scanner.Id;
+            SavePreferences();
+        }
     }
 
     private void PagesList_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e) => UpdatePreview();
@@ -203,7 +279,7 @@ public partial class MainWindow : Window
         PagesList.Items.Refresh();
     }
 
-    private async Task RunUiAsync(string busyText, Func<CancellationToken, Task> action)
+    private async Task RunUiAsync(string busyText, Func<CancellationToken, Task> action, bool showErrors = true)
     {
         SetBusy(true, busyText);
         try
@@ -214,7 +290,8 @@ public partial class MainWindow : Window
         catch (Exception ex)
         {
             StatusText.Text = "Falha na operacao.";
-            MessageBox.Show(ex.Message, "PScanner", MessageBoxButton.OK, MessageBoxImage.Error);
+            if (showErrors)
+                MessageBox.Show(ex.Message, "PScanner", MessageBoxButton.OK, MessageBoxImage.Error);
         }
         finally
         {
@@ -225,6 +302,8 @@ public partial class MainWindow : Window
     private void SetBusy(bool busy, string text)
     {
         StatusText.Text = text;
+        DiscoverButton.IsEnabled = !busy;
+        DiscoveredServersCombo.IsEnabled = !busy;
         TestButton.IsEnabled = !busy;
         RefreshButton.IsEnabled = !busy;
         ScanButton.IsEnabled = !busy;
@@ -233,6 +312,10 @@ public partial class MainWindow : Window
     private void SavePreferences()
     {
         _config.LastServerUrl = ServerUrlBox.Text;
+        if (int.TryParse(DiscoveryPortBox.Text, out var port))
+            _config.LastDiscoveryPort = port;
+        if (ScannerCombo.SelectedItem is ScannerInfoDto scanner)
+            _config.LastScannerId = scanner.Id;
         _config.LastDpi = (int)(DpiCombo.SelectedItem ?? 200);
         _config.LastColorMode = ((ComboItem?)ColorModeCombo.SelectedItem)?.Value ?? "Color";
         _config.LastOutputFormat = (string)(FormatCombo.SelectedItem ?? "PDF");

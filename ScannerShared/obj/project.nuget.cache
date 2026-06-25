@@ -1,8 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "ANtoh6bNhsU=",
+  "dgSpecHash": "c/dLx1cFGZw=",
   "success": true,
   "projectFilePath": "C:\\Users\\Gestor\\Desktop\\PScanner\\ScannerShared\\ScannerShared.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\Gestor\\.nuget\\packages\\microsoft.netcore.app.runtime.win-x64\\8.0.25\\microsoft.netcore.app.runtime.win-x64.8.0.25.nupkg.sha512",
+    "C:\\Users\\Gestor\\.nuget\\packages\\microsoft.windowsdesktop.app.runtime.win-x64\\8.0.25\\microsoft.windowsdesktop.app.runtime.win-x64.8.0.25.nupkg.sha512",
+    "C:\\Users\\Gestor\\.nuget\\packages\\microsoft.aspnetcore.app.runtime.win-x64\\8.0.25\\microsoft.aspnetcore.app.runtime.win-x64.8.0.25.nupkg.sha512"
+  ],
   "logs": []
 }
